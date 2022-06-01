@@ -13,6 +13,7 @@ const estadosCivisRoute = require('./routes/estadosCivisRoute');
 const tiposContatosRoute = require('./routes/tiposContatosRoute');
 const consultaCpfRoute = require('./routes/consultaCpfRoute');
 const buscaCepRoute = require('./routes/buscaCepRoute');
+const integraPlanosRoute = require('./routes/integraPlanosRoute');
 
 app.use('/', index);
 app.use('/sales', index);
@@ -21,5 +22,6 @@ app.use('/sales/estados_civis', estadosCivisRoute);
 app.use('/sales/tipos_contatos', tiposContatosRoute);
 app.use('/sales/consulta_cpf', consultaCpfRoute);
 app.use('/sales/busca_cep', buscaCepRoute);
+app.use('/sales/integra_planos', integraPlanosRoute);
 
 module.exports = app;

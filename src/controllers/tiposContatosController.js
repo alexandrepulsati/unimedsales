@@ -5,7 +5,7 @@ async function run(req, res, next) {
     try {
       let sql, binds, options, result;
       connection = await oracledb.getConnection(dbConfig);
-      sql = `select VL_DOMINIO CODIGO,DS_VALOR_DOMINIO DESCRICAO from tasy.VALOR_DOMINIO_V WHERE CD_DOMINIO=8 AND IE_SITUACAO='A'`;
+      sql = `SELECT * FROM VW_LISTA_TIPOS_CONTATOS`;
       binds = {};
       options = {
         outFormat: oracledb.OUT_FORMAT_OBJECT,   // query result format

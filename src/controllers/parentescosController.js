@@ -5,7 +5,7 @@ async function run(req, res, next) {
     try {
       let sql, binds, options, result;
       connection = await oracledb.getConnection(dbConfig);
-      sql = `select NR_SEQUENCIA cod_parentesco,DS_PARENTESCO desc_parentesco from tasy.GRAU_PARENTESCO`;
+      sql = `SELECT * FROM VW_LISTA_PARENTESCOS`;
       binds = {};
       options = {
         outFormat: oracledb.OUT_FORMAT_OBJECT,   // query result format

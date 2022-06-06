@@ -9,6 +9,12 @@ let recordtypeid;
 
 async function run(req, res, next) {
   const { conn, userInfo } = await initConnectSales();
+  const planossales = await sqlDataSales(
+    conn,
+    "SELECT Id,Name from Product2",
+  );
+  console.log(planossales);
+
   const data = await sqlDataSales(
     conn,
     "SELECT Id FROM RecordType WHERE SobjectType = 'Product2' AND DeveloperName = 'Unimed_Natal_Pessoa_Fisica'",
@@ -18,14 +24,33 @@ async function run(req, res, next) {
     try {
       let sql, binds, options, result;
       connection = await oracledb.getConnection(dbConfig);
-      sql = `SELECT VW_LISTA_PLANOS.*,'` + recordtypeid + `' RECORDTYPEID FROM VW_LISTA_PLANOS`;
+      sql = `SELECT VW_LISTA_PLANOS.*,'` + recordtypeid + `' RECORDTYPEID FROM VW_LISTA_PLANOS WHERE rownum > 5000`;
       binds = {};
       options = {
         outFormat: oracledb.OUT_FORMAT_OBJECT,   // query result format
         // extendedMetaData: true,               // get extra metadata
       };  
       result = await connection.execute(sql, binds, options);        
-      res.send(result.rows);
+
+     /* 
+     conn.sobject("Product2").create(result.rows,
+       // 'Id_external__c',
+       // { allOrNone: true },
+        function(err, rets) {
+          console.log('to aqui...');
+         
+          if (err) { return console.error(err); }
+          for (var i=0; i < rets.length; i++) {
+            console.log(rets[i].errors);
+            if (rets[i].success) {
+
+              console.log("Upserted Successfully: "+ + rets[i].id);
+            }
+          }
+          // ...
+        });
+        */
+
     } catch (err) {
         console.error(err);
     } finally {

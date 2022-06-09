@@ -12,11 +12,13 @@ RUN wget https://download.oracle.com/otn_software/linux/instantclient/instantcli
     echo /opt/oracle/instantclient* > /etc/ld.so.conf.d/oracle-instantclient.conf && \
     ldconfig
 
+RUN mkdir /app
+
 WORKDIR /app
 
 COPY ["package.json", "package-lock.json*", "./"]
 
-RUN npm install --production
+RUN npm install
 
 COPY . .
 EXPOSE  3000

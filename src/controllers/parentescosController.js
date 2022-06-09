@@ -14,14 +14,12 @@ async function run(req, res, next) {
       result = await connection.execute(sql, binds, options);        
       res.send(result.rows);
     } catch (err) {
-      res.send('ERRO SELECT');
-        console.error(err);
+        res.send(err);
     } finally {
         if (connection) {
           try {
             await connection.close();
           } catch (err) {
-            console.error(err);
             res.send(err);
           }
         }

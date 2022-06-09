@@ -29,13 +29,13 @@ async function run(req, res, next) {
       }
   
     } catch (err) {
-        console.error(err);
+      res.send(err);
     } finally {
         if (connection) {
           try {
             await connection.close();
           } catch (err) {
-            console.error(err);
+            res.send(err);
           }
         }
     }  

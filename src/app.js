@@ -15,6 +15,7 @@ const consultaCpfRoute = require('./routes/consultaCpfRoute');
 const buscaCepRoute = require('./routes/buscaCepRoute');
 const buscaCarenciasRoute = require('./routes/buscaCarenciasRoute');
 const integraPlanosRoute = require('./routes/integraPlanosRoute');
+const gravaVidasRoute = require('./routes/gravaVidasRoute');
 
 app.use('/', index);
 app.use('/sales', index);
@@ -25,5 +26,6 @@ app.use('/sales/consulta_cpf', consultaCpfRoute);
 app.use('/sales/busca_cep', buscaCepRoute);
 app.use('/sales/busca_carencias', buscaCarenciasRoute);
 app.use('/sales/integra_planos', integraPlanosRoute);
+app.use('/sales/grava_vidas', gravaVidasRoute);
 
 module.exports = app;
